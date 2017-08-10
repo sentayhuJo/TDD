@@ -1,0 +1,26 @@
+{
+  "name": "tdd-rewire",
+  "version": "1.0.0",
+  "description": "Unit testing using Mocha and Chai and rewire",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha ||"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.1.1",
+    "eslint": "^4.4.1",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-config-google": "^0.9.1",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.2.0",
+    "nock": "^9.0.14",
+    "rewire": "^2.5.2"
+  }
+}
