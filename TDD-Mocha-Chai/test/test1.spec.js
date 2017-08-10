@@ -1,10 +1,12 @@
-var expect = require('chai').expect;
-var tools = require('../lib/tools');
+const expect = require('chai').expect;
+const nock = require('nock');
 
-describe('tools', function(){
-  describe("printNmae()", function (){
-    it('should print the name', function(){
-      var result = tools.printName({
+const tools = require('../lib/tools');
+
+describe('tools', () => {
+  describe('printNmae()', () => {
+    it('should print the name', () => {
+      const result = tools.printName({
         firstName: 'sentayhu',
         lastName: 'Mekoonn',
       });
@@ -12,10 +14,28 @@ describe('tools', function(){
     });
   });
 
-  describe('addNumber()', function(){
-    it('should add two number ', function(){
-      var sum = tools.addNumber(2,2);
+  describe('addNumber()', () => {
+    it('should add two number ', () => {
+      const sum = tools.addNumber(2, 2);
       expect(sum).to.equal(4);
+    });
+  });
+
+  describe('loadwiki', () => {
+    // this.timeout(5000);
+    // Mocha HOOKS, before we run the test
+    before(() => {
+      // Create a Mock webserver for wikipedia
+      nock('https://en.wikipedia.org')
+        .get('/wiki/Abraham_Lincoln')
+        .reply(200, 'Mock Abrham Lincoln Page');
+    });
+
+    it('load Abraham Lincoln page', (done) => {
+      tools.loadMyPage({ firstName: 'Abraham', lastName: 'Lincoln' }, (html) => {
+        expect(html).to.equal('Mock Abrham Lincoln Page');
+        done();
+      });
     });
   });
 });
